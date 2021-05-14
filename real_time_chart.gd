@@ -17,19 +17,17 @@ func _ready():
 		var file = File.new()
 		file.open("values.json", file.READ)
 		var json = file.get_as_text()
-		var json_result = JSON.parse(json).result
 		file.close()
 		
 		yield(get_tree().create_timer(0.5),"timeout")
 		var file2 = File.new()
 		file2.open("values.json", file.READ)
 		var json2 = file2.get_as_text()
-		var json_result2 = JSON.parse(json2).result
 		file2.close()
 		
 		if json!=json2:
+			chart_node.clear_chart()
 			reset()
-
 
 
 func reset():
@@ -45,3 +43,4 @@ func reset():
 		value = json_result[str(item)]
 		   }
 		})
+		
